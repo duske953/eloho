@@ -1,0 +1,29 @@
+{
+  "name": "zohar",
+  "version": "1.0.0",
+  "description": "my portfolio website",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "sass-dev": "sass --watch --update --style=expanded sass/main.scss:public/css/styles.css",
+    "sass-prod": "sass --no-source-map --style=compressed sass/main.scss:public/css/styles.css"
+  },
+  "author": "Eloho Kennedy Zohar",
+  "license": "ISC",
+  "engines": {
+    "node": "14.15.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "compression": "^1.7.4",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-minify": "^1.0.0",
+    "express-minify-html": "^0.12.0",
+    "nodemailer": "^6.7.2",
+    "validator": "^13.7.0",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {}
+}
