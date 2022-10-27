@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const app = express();
 // const path = require("path");
 // const xss = require("xss-clean");
@@ -8,11 +8,11 @@ const app = express();
 // const minify = require("express-minify");
 // const validator = require("validator");
 // const compression = require("compression");
-// app.set("view engine", "ejs");
+app.set("view engine", "ejs");
 // app.use(bodyParser.urlencoded({ extended: true }));
 // const { nodeMailer } = require("./modelMail");
-// app.use(express.json());
-// const router = express.Router();
+app.use(express.json());
+const router = express.Router();
 
 // app.use(compression());
 // app.use(
@@ -56,26 +56,20 @@ const app = express();
 //   next();
 // }
 
-// function renderHomePage(req, res) {
-//   res.render("home");
-// }
+function renderHomePage(req, res) {
+  res.render("home");
+}
 
 // function postHomePage(req, res) {
 //   receiveEmail(req, res);
 // }
 
-// router
-//   .route("/")
-//   .get(renderHomePage)
-//   .post(checkLengthInput, checkValidEmail, postHomePage);
-// app.use("/", router);
+router.route("/").get(renderHomePage);
 
-// app.all("*", (req, res) => {
-//   res.redirect("/");
-// });
+app.use("/", router);
 
-app.get("/", (req, res) => {
-  res.send("ok");
+app.all("*", (req, res) => {
+  res.redirect("/");
 });
 
 app.listen(process.env.PORT || 3000, () => {
