@@ -4,7 +4,7 @@
   "description": "my portfolio website",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node index.js",
     "sass-dev": "sass --watch --update --style=expanded sass/main.scss:public/css/styles.css",
     "sass-prod": "sass --no-source-map --style=compressed sass/main.scss:public/css/styles.css"
   },
