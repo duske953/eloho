@@ -57,7 +57,7 @@ const router = express.Router();
 // }
 
 function renderHomePage(req, res) {
-  res.send("ok");
+  res.render("home");
 }
 
 // function postHomePage(req, res) {
