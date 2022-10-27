@@ -58,7 +58,7 @@ function checkValidEmail(req, res, next) {
 
 function renderHomePage(req, res) {
   res.render("home", {}, (err, data) => {
-    res.send(data);
+    res.send("ken");
   });
 }
 
