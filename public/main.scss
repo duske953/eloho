@@ -20,7 +20,6 @@ $padding-l-r: 3.2rem;
     font-size: 4.4rem;
     margin-bottom: 4.4rem;
     font-weight: 500;
-    border-bottom: 3px solid $color-secondary;
     padding-bottom: 1rem;
   }
 }
@@ -50,29 +49,45 @@ $padding-l-r: 3.2rem;
 }
 
 body {
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
   color: #fff;
   position: relative;
-  overflow-x: hidden;
 }
 
 html {
   font-size: 62.5%;
-  overflow-x: hidden;
 }
 
+@keyframes navTransitionEnter {
+  from {
+    transform: translateY(-25%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes navTransitionLeave {
+  from {
+    transform: translateY(25%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #000;
-  height: 6.4rem;
-  padding: 4.4rem 0;
+  transition: all 0.2s ease-out;
 
   &__active {
-    position: fixed;
+    position: sticky;
+    animation: navTransitionEnter 50ms;
+    opacity: 1;
+    top: 0;
     z-index: 2000;
-    width: 100%;
   }
 }
 
@@ -137,7 +152,7 @@ html {
   // background-color: red;
   height: 100vh;
   background: linear-gradient(to top right, rgb(0, 0, 0), rgba(0, 0, 0, 0.589)),
-    url(../img/fotis-fotopoulos-DuHKoV44prg-unsplash.jpg);
+    url(img/bgImg.jpg);
   background-size: cover;
   background-position: top;
   border-bottom: 8px solid #222;
@@ -258,7 +273,7 @@ html {
 
 // spinner
 .lds-roller div:after {
-  content: " ";
+  content: ' ';
   display: block;
   position: absolute;
   width: 7px;
@@ -355,31 +370,47 @@ html {
 .section-tools {
   @include Sections($padding-t-b, $padding-l-r);
 
+  &__container {
+    display: flex;
+  }
   &__box {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    list-style: none;
-    column-gap: 6.4rem;
-    row-gap: 3.6rem;
+    position: relative;
+    border: 2px dotted $color-secondary;
+    height: 60rem;
+    width: 60rem;
+    margin: 0 auto;
+    border-radius: 100%;
+  }
+
+  &__icon {
+    font-size: 10rem;
+    position: absolute;
+    background-color: $color-secondary;
+    border-radius: 10px;
+    &-html {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-css {
+      top: 9%;
+      left: 2%;
+    }
+    &-js {
+      top: 9%;
+      right: 2%;
+    }
+    &-react {
+      bottom: 9%;
+      left: 2%;
+    }
+    &-node {
+      bottom: 9%;
+      right: 2%;
+    }
   }
 
   @include secondaryHeading;
-
-  &--main {
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-  }
-
-  &__title {
-    font-size: 1.8rem;
-    text-transform: uppercase;
-  }
-
-  &__description {
-    font-size: 1.6rem;
-    line-height: 1.7;
-  }
 }
 
 .portfolio-section {
@@ -392,11 +423,16 @@ html {
 
   &__img {
     width: 100%;
-    height: 75vh;
+    height: 50rem;
     object-fit: cover;
     margin-bottom: 1.4rem;
   }
 
+  &__action {
+    display: flex;
+    justify-content: center;
+    gap: 2.4rem;
+  }
   @include secondaryHeading;
 
   &__title:link,
@@ -411,9 +447,14 @@ html {
   }
 
   .slick-arrow {
-    position: absolute;
+    // position: fixed;
     z-index: 1;
-    height: 2.4rem;
+    height: 100%;
+    top: 50%;
+
+    @media (max-width: 31em) {
+      top: 40%;
+    }
   }
 
   .slick-next::before,
@@ -451,7 +492,6 @@ html {
     font-weight: 500;
     text-align: center;
     display: inline-block;
-    border-bottom: 3px solid $color-secondary;
     padding-bottom: 1rem;
   }
 
@@ -497,7 +537,7 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  z-index: 2;
+  z-index: 5000;
   transition: all 0.3s;
 
   // padding: 9.8rem 0;
@@ -605,8 +645,9 @@ html {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.863);
-  z-index: 1;
+  z-index: 4000;
   transition: 0.3s all;
+  cursor: pointer;
 }
 
 .message {
@@ -644,7 +685,7 @@ html {
 }
 
 .spinner-border {
-  z-index: 1000;
+  z-index: 6000;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -721,10 +762,6 @@ html {
     }
   }
 
-  .section-tools__box {
-    column-gap: 3.4rem;
-  }
-
   .nav {
     padding: 1.4rem;
   }
@@ -733,7 +770,11 @@ html {
 @media (max-width: 40em) {
   .section-tools {
     &__box {
-      grid-template-columns: 1fr;
+      height: 50rem;
+    }
+
+    &__icon {
+      font-size: 8rem;
     }
   }
 
@@ -765,6 +806,13 @@ html {
   .hero-section__heading {
     font-size: 5rem;
   }
+
+  .portfolio-section {
+    &__title:link,
+    &__title:visited {
+      font-size: 2rem;
+    }
+  }
 }
 
 @media (max-width: 31em) {
@@ -786,8 +834,13 @@ html {
       padding: 1.2rem 4.4rem;
     }
 
+    &__action {
+      flex-direction: column;
+      padding: 0 2rem;
+    }
+
     &__img {
-      height: 50vh;
+      // height: 50vh;
     }
   }
 
@@ -814,6 +867,12 @@ html {
 
   .message-box {
     width: 75%;
+  }
+}
+
+@media (max-width: 25em) {
+  .section-tools__box {
+    height: 45rem;
   }
 }
 
