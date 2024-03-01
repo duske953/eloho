@@ -63,6 +63,9 @@ app.use(
     windowMs: 60 * 60 * 1000,
     limit: 5,
     standardHeaders: 'draft-7',
+    validate: {
+      trustProxy: false,
+    },
   })
 );
 app.post('/', (req, res, next) => {
