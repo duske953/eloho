@@ -5,7 +5,6 @@
   "sourceType": "module",
   "description": "My personal porfolio",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "dev:js": "watchify ./public/JS/index.js -o ./public/JS/bundle.js -p esmify ",
     "build:js": "browserify ./public/JS/index.js -p esmify  | terser > ./public/JS/bundle.js",
